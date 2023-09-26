@@ -4,6 +4,9 @@
 // import moment from "moment";
 // import "./MyCalendar.css"
 
+
+
+
 // const localizer = momentLocalizer(moment);
 
 // const MyCalendar = ({ tasks }) => {
@@ -38,6 +41,10 @@ const MyCalendar = ({ tasks }) => {
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500, color: "white" }}
+        views={["month", "day"]}
+        popup
+        selectable
+        onSelectEvent={(event, e) => console.log(event)}
       />
     </div>
   );

@@ -1,5 +1,10 @@
 import "./App.css";
-import { PricingProvider, UserContext, LoginContext } from "./Context";
+import {
+  PricingProvider,
+  UserContext,
+  LoginContext,
+  
+} from "./Context";
 import HomePage from "./Pages/HomePage";
 import NavBar from "./components/NavBar";
 import Contact from "./Pages/Contact";
@@ -19,42 +24,52 @@ function App() {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
+  
 
   useEffect(() => {
     localStorage.setItem("logins", JSON.stringify(loginData)),
       localStorage.setItem("users", JSON.stringify(userData));
+    
   }, [loginData, userData]);
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       <LoginContext.Provider value={{ loginData, setLoginData }}>
-        <PricingProvider>
-          <>
-            <NavBar />
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="pricing" element={<Pricing />} />
-                <Route path="contact" element={<Contact />} />
-                <Route
-                  path="login"
-                  element={
-                    <Login userData={userData} setLoginData={setLoginData} />
-                  }
-                />
-                <Route
-                  path="login/register"
-                  element={
-                    <Register userData={userData} setUserData={setUserData} />
-                  }
-                />
-                <Route path="profile" element={<Profile />} />
-                <Route path="workzone" element={<WorkZone />} />
-                <Route path="payment" element={<Payment />} />
-              </Routes>
-            </div>
-          </>
-        </PricingProvider>
+        
+          <PricingProvider>
+            <>
+              <NavBar />
+              <div className="container">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="pricing" element={<Pricing />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route
+                    path="login"
+                    element={
+                      <Login userData={userData} setLoginData={setLoginData} />
+                    }
+                  />
+                  <Route
+                    path="LogIn/Register"
+                    element={
+                      <Register userData={userData} setUserData={setUserData} />
+                    }
+                  />
+                  <Route path="profile" element={<Profile />} />
+                  <Route path="workzone" element={<WorkZone />} />
+                  <Route
+                    path="payment"
+                    element={
+                      <Payment
+                      />
+                    }
+                  />
+                </Routes>
+              </div>
+            </>
+          </PricingProvider>
+        
       </LoginContext.Provider>
     </UserContext.Provider>
   );
