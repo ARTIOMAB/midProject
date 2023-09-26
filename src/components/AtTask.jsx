@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
@@ -13,9 +14,9 @@ function AtTasks() {
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
-    dueDate: null,
-    startTime: null,
-    finishTime: null,
+    dueDate: new Date(),
+    startTime: new Date(),
+    finishTime: new Date(),
     isAllDay: false,
     duration: "",
     notes: "",
@@ -31,39 +32,13 @@ function AtTasks() {
   };
 
   const addTask = () => {
-    if (
-      newTask.title.trim() !== "" &&
-      newTask.priority !== "" &&
-      newTask.dueDate
-    ) {
-      const event = {
-        title: newTask.title,
-        explanation: newTask.explanation,
-        start: newTask.isAllDay
-          ? new Date(newTask.dueDate.setHours(0, 0, 0))
-          : new Date(newTask.dueDate).setHours(
-              newTask.startTime.getHours(),
-              newTask.startTime.getMinutes()
-            ),
-        end: newTask.isAllDay
-          ? new Date(newTask.dueDate.setHours(23, 59, 59))
-          : new Date(newTask.dueDate).setHours(
-              newTask.finishTime.getHours(),
-              newTask.finishTime.getMinutes()
-            ),
-        duration: newTask.duration,
-        notes: newTask.notes,
-        priority: newTask.priority,
-      };
-
-      setTasks([...tasks, event]);
 
       setNewTask({
         title: "",
         explanation: "",
-        dueDate: null,
-        startTime: null,
-        finishTime: null,
+        dueDate: new Date(),
+        startTime: new Date(),
+        finishTime: new Date(),
         isAllDay: false,
         duration: "",
         notes: "",
@@ -96,6 +71,7 @@ function AtTasks() {
     userData.splice(userIndex, 1, loginData);
     setUserData(userData);
   };
+
   return (
     <>
       <h1>My Missions</h1>
@@ -141,7 +117,9 @@ function AtTasks() {
                 className="inputGroup"
                 placeholderText="Task Deadline Date"
                 selected={newTask.dueDate}
-                onChange={(date) => setNewTask({ ...newTask, dueDate: date })}
+                onChange={(date) => {
+                  setNewTask({ ...newTask, dueDate: date });
+                }}
                 dateFormat="yyyy-MM-dd"
               />
 
@@ -239,15 +217,15 @@ function AtTasks() {
 
                           <td>
                             {task.dueDate
-                              ? task.dueDate.slice(0, 10)
-                              : "Not Set"}
+                              ? task.dueDate.toString().slice(0, 10)
+                              : "Not yet scheduled"}
                           </td>
                           <td>
                             {task.isAllDay
                               ? "All Day"
                               : task.startTime &&
                                 task.finishTime &&
-                                `${task.startTime.toLocaleTimeString()} - ${task.finishTime.toLocaleTimeString()}`}
+                                `${Number(task.startTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)} - ${Number(task.finishTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)}`}
                           </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>
