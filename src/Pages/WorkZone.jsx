@@ -7,9 +7,6 @@ function WorkZone() {
   return (
     <div className="workzone-container">
       <h2>WorkZone</h2>
-      <div className="todolist">
-        <ToDoList />
-      </div>
       <div className="calender">
         <MyCalendar />
       </div>
