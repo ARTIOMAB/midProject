@@ -27,3 +27,4 @@ export function PricingProvider({ children }) {
 
 export const UserContext = createContext({ users: [] });
 export const LoginContext = createContext({ login: {} });
+export const PaymentContext = createContext({ payment: [] });

@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { Button, Modal, Box } from "@mui/material";
+import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
 function AtTasks() {
   const [open, setOpen] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const userIndex = userData.findIndex(
+    (user) => user.username === loginData.username
+  );
+  const [tasks, setTasks] = useState(loginData.tasks || []);
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
     dueDate: null,
-    hour: "",
+    startTime: null,
+    finishTime: null,
     isAllDay: false,
     duration: "",
     notes: "",
@@ -26,13 +31,39 @@ function AtTasks() {
   };
 
   const addTask = () => {
-    if (newTask.title.trim() !== "" && newTask.priority !== "") {
-      setTasks([...tasks, newTask]);
+    if (
+      newTask.title.trim() !== "" &&
+      newTask.priority !== "" &&
+      newTask.dueDate
+    ) {
+      const event = {
+        title: newTask.title,
+        explanation: newTask.explanation,
+        start: newTask.isAllDay
+          ? new Date(newTask.dueDate.setHours(0, 0, 0))
+          : new Date(newTask.dueDate).setHours(
+              newTask.startTime.getHours(),
+              newTask.startTime.getMinutes()
+            ),
+        end: newTask.isAllDay
+          ? new Date(newTask.dueDate.setHours(23, 59, 59))
+          : new Date(newTask.dueDate).setHours(
+              newTask.finishTime.getHours(),
+              newTask.finishTime.getMinutes()
+            ),
+        duration: newTask.duration,
+        notes: newTask.notes,
+        priority: newTask.priority,
+      };
+
+      setTasks([...tasks, event]);
+
       setNewTask({
         title: "",
         explanation: "",
         dueDate: null,
-        hour: "",
+        startTime: null,
+        finishTime: null,
         isAllDay: false,
         duration: "",
         notes: "",
@@ -44,6 +75,10 @@ function AtTasks() {
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+    loginData.tasks = updatedTasks;
+    setLoginData(loginData);
+    userData.splice(userIndex, 1, loginData);
+    setUserData(userData);
   };
 
   const handleDragEnd = (result) => {
@@ -56,12 +91,16 @@ function AtTasks() {
     reorderedTasks.splice(result.destination.index, 0, movedTask);
 
     setTasks(reorderedTasks);
+    loginData.tasks = reorderedTasks;
+    setLoginData(loginData);
+    userData.splice(userIndex, 1, loginData);
+    setUserData(userData);
   };
   return (
     <>
-      <h1>my missions</h1>
+      <h1>My Missions</h1>
       <Button id="addTaskBTN" onClick={handleOpen}>
-        Add Tasks
+        Add Task
       </Button>
       <div id="Container">
         <Modal
@@ -97,55 +136,53 @@ function AtTasks() {
                 }
               />
 
-              <label>
-                2. Write anything that will help you complete the task{" "}
-              </label>
-              <input
-                className="inputGroup"
-                id="explanation-input"
-                type="text"
-                placeholder="Task Explanation"
-                value={newTask.explanation}
-                onChange={(e) =>
-                  setNewTask({ ...newTask, explanation: e.target.value })
-                }
-              />
-
-              <label>3. Deadline Date: </label>
+              <label>3. Deadline Date:</label>
               <DatePicker
                 className="inputGroup"
-                place
-                holder="Task Deadline Date"
+                placeholderText="Task Deadline Date"
                 selected={newTask.dueDate}
                 onChange={(date) => setNewTask({ ...newTask, dueDate: date })}
                 dateFormat="yyyy-MM-dd"
               />
 
-              <label>4. Hour:</label>
-              <input
+              <label>4. Start Time:</label>
+              <DatePicker
                 className="inputGroup"
-                id="hour-input"
-                type="text"
-                placeholder="Deadline hour"
-                value={newTask.hour}
+                placeholderText="Start Time"
+                selected={newTask.startTime}
+                onChange={(date) => setNewTask({ ...newTask, startTime: date })}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+              />
+
+              <label>5. Finish Time:</label>
+              <DatePicker
+                className="inputGroup"
+                placeholderText="Finish Time"
+                selected={newTask.finishTime}
+                onChange={(date) =>
+                  setNewTask({ ...newTask, finishTime: date })
+                }
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+              />
+
+              <label>6. All Day Event:</label>
+              <input
+                type="checkbox"
+                checked={newTask.isAllDay}
                 onChange={(e) =>
-                  setNewTask({ ...newTask, hour: e.target.value })
+                  setNewTask({ ...newTask, isAllDay: e.target.checked })
                 }
               />
 
-              <label>5. Duration:</label>
-              <input
-                className="inputGroup"
-                id="duration-input"
-                type="text"
-                placeholder="Estimated Duration"
-                value={newTask.duration}
-                onChange={(e) =>
-                  setNewTask({ ...newTask, duration: e.target.value })
-                }
-              />
-
-              <label>6. Notes or Comments:</label>
+              <label>8. Notes or Comments:</label>
               <textarea
                 className="inputGroup"
                 id="notes-input"
@@ -156,7 +193,7 @@ function AtTasks() {
                 }
               />
 
-              <label>7. Priority:</label>
+              <label>9. Priority:</label>
               <select
                 className="inputGroup"
                 id="priority-input"
@@ -171,13 +208,8 @@ function AtTasks() {
                 <option value="high">High</option>
               </select>
             </div>
-            <div id="2BTNS">
+            <div id="2BTNs">
               <button onClick={addTask}>Add Task</button>
-              <p id="parent-modal-description">
-                Enter task details, select a due date, specify the time (HH:mm),
-                select a priority, then click on 'Add Task', and click 'Close'
-                to close the window!
-              </p>
               <button onClick={handleClose}>Close window</button>
             </div>
           </Box>
@@ -204,14 +236,19 @@ function AtTasks() {
                           {...provided.dragHandleProps}
                         >
                           <td>{task.title}</td>
-                          <td>{task.explanation}</td>
+
                           <td>
                             {task.dueDate
-                              ? task.dueDate.toISOString().slice(0, 10)
+                              ? task.dueDate.slice(0, 10)
                               : "Not Set"}
                           </td>
-                          <td>{task.hour || "Not Set"}</td>
-                          <td>{task.duration}</td>
+                          <td>
+                            {task.isAllDay
+                              ? "All Day"
+                              : task.startTime &&
+                                task.finishTime &&
+                                `${task.startTime.toLocaleTimeString()} - ${task.finishTime.toLocaleTimeString()}`}
+                          </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>
                           <td>
