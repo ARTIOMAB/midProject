@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { LoginContext } from "../Context";
 
 function NavBar() {
   const navigate = useNavigate();
+  const { loginData, setLoginData } = useContext(LoginContext);
 
   const handleLoginNavigate = () => {
     navigate("/login");
@@ -11,6 +13,14 @@ function NavBar() {
   const handleProfileNavigate = () => {
     navigate("/profile");
   };
+  const handleWorkZoneNavigate = () => {
+    navigate("/workzone");
+  };
+  const handleLogout = () => {
+    setLoginData({});
+    navigate("/");
+  };
+  const isLoggedIn = !!loginData.username;
 
   return (
     <header>
@@ -28,13 +38,25 @@ function NavBar() {
           </NavLink>
         </ul>
       </nav>
-      <button onClick={handleLoginNavigate} className="Log-in btn">
-        Log-in
-      </button>
-
-      <button onClick={handleProfileNavigate} className="profile btn">
-        Profile
-      </button>
+      {isLoggedIn ? (
+        <button onClick={handleLogout} className="Log-in btn">
+          Log-Out
+        </button>
+      ) : (
+        <button onClick={handleLoginNavigate} className="Log-in btn">
+          Log-In
+        </button>
+      )}
+      {isLoggedIn && (
+        <button onClick={handleProfileNavigate} className="profile btn">
+          Profile
+        </button>
+      )}
+      {isLoggedIn && (
+        <button onClick={handleWorkZoneNavigate} className="profile btn">
+          WorkZone
+        </button>
+      )}
     </header>
   );
 }

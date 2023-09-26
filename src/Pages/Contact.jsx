@@ -1,4 +1,5 @@
 import React from "react";
+import "./contact.css";
 
 function Contact() {
   return (
@@ -28,7 +29,7 @@ function Contact() {
       <br />
       <br />
 
-      <input type="submit" value="Submit" />
+      <input type="submit" />
     </div>
   );
 }

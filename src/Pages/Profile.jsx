@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../Context";
 import { useNavigate } from "react-router-dom";
+import "./profile.css";
 
 function Profile() {
   const navigatePayment = useNavigate();
@@ -11,10 +12,14 @@ function Profile() {
     return <div> error to import userData</div>;
   }
   const user = userData[userData.length - 1];
-  const { username, password, email } = user;
+  const { username, email, payment } = user;
   const handelClick = () => {
     navigatePayment("/payment");
   };
+  let lastCreditCardNumber = null;
+  if (payment && payment.length > 0) {
+    lastCreditCardNumber = payment[payment.length - 1].creditCardNumber;
+  }
 
   return (
     <div className="profile-container">
@@ -23,7 +28,7 @@ function Profile() {
         <div className="profile-card-userData">
           <div>userName: {username}</div>
           <div>Email: {email}</div>
-          <div>Password: {password}</div>
+          <div>Credit Card number: {lastCreditCardNumber}</div>
           <div>Account type:</div>
           <button onClick={handelClick}>payment</button>
         </div>

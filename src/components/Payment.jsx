@@ -1,14 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { LoginContext, UserContext } from "../Context";
 
-function Payment({ paymentData, setPaymentData }) {
+function Payment() {
   const navigate = useNavigate();
-
+  const { loginData, setLoginData } = useContext(LoginContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const [paymentData, setPaymentData] = useState(loginData.payment || []);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const userIndex = userData.findIndex(
+    (user) => user.username === loginData.username
+  );
 
   const onSubmit = (data) => {
     if (!/^\d{2}$/.test(data.creditCardNumber)) {
@@ -29,10 +36,25 @@ function Payment({ paymentData, setPaymentData }) {
       return;
     }
 
-    console.log(data);
-    setPaymentData((prev) => [...prev, data]);
-    navigate("/");
+    const updatedPayment = [...paymentData, data];
+    setPaymentData(updatedPayment);
+
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      payment: updatedPayment,
+    }));
+
+    const updatedUserData = [...userData];
+    updatedUserData[userIndex] = { ...loginData, payment: updatedPayment };
+    setUserData(updatedUserData);
+    console.log(updatedUserData);
+    navigate("/workzone");
   };
+
+  useEffect(() => {
+    localStorage.setItem("logins", JSON.stringify(loginData));
+    localStorage.setItem("users", JSON.stringify(userData));
+  }, [loginData, userData]);
 
   return (
     <div id="payment-card">
@@ -64,7 +86,9 @@ function Payment({ paymentData, setPaymentData }) {
         />
         {errors.cvv && <span>CVV is required</span>}
 
-        <button type="submit">Pay Now</button>
+        <button className="pay-button" type="submit">
+          Pay Now
+        </button>
       </form>
     </div>
   );
