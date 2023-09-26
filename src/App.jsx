@@ -3,7 +3,7 @@ import {
   PricingProvider,
   UserContext,
   LoginContext,
-  PaymentContext,
+  
 } from "./Context";
 import HomePage from "./Pages/HomePage";
 import NavBar from "./components/NavBar";
@@ -24,20 +24,18 @@ function App() {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
-  const [paymentData, setPaymentData] = useState(
-    JSON.parse(localStorage.getItem("payment")) || []
-  );
+  
 
   useEffect(() => {
-    localStorage.setItem("login", JSON.stringify(loginData)),
+    localStorage.setItem("logins", JSON.stringify(loginData)),
       localStorage.setItem("users", JSON.stringify(userData));
-    localStorage.setItem("payment", JSON.stringify(paymentData));
-  }, [loginData, userData, paymentData]);
+    
+  }, [loginData, userData]);
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       <LoginContext.Provider value={{ loginData, setLoginData }}>
-        <PaymentContext.Provider value={{ paymentData, setPaymentData }}>
+        
           <PricingProvider>
             <>
               <NavBar />
@@ -64,8 +62,6 @@ function App() {
                     path="payment"
                     element={
                       <Payment
-                        paymentData={paymentData}
-                        setPaymentData={setPaymentData}
                       />
                     }
                   />
@@ -73,7 +69,7 @@ function App() {
               </div>
             </>
           </PricingProvider>
-        </PaymentContext.Provider>
+        
       </LoginContext.Provider>
     </UserContext.Provider>
   );

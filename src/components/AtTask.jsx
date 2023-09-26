@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState } from "react";
 // import { Button, Modal, Box } from "@mui/material";
 // import DatePicker from "react-datepicker";
@@ -243,7 +244,11 @@
 
 // export default Atasks;
 import React, { useState } from "react";
+=======
+import React, { useState, useContext, useEffect } from "react";
+>>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
 import { Button, Modal, Box } from "@mui/material";
+import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
@@ -251,8 +256,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./AtTasks.css";
 
 function Atasks() {
+  const { loginData, setLoginData } = useContext(LoginContext);
+  const { userData, setUserData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const userIndex = userData.findIndex(
+    (user) => user.username === loginData.username
+  );
+  const [tasks, setTasks] = useState(loginData.tasks || []);
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
@@ -274,6 +284,7 @@ function Atasks() {
   };
 
   const addTask = () => {
+<<<<<<< HEAD
     if (
       newTask.title.trim() !== "" &&
       newTask.priority !== "" &&
@@ -301,6 +312,15 @@ function Atasks() {
 
       setTasks([...tasks, event]);
 
+=======
+    if (newTask.title.trim() !== "" && newTask.priority !== "") {
+      const listCopy = ([...tasks, newTask]);
+      setTasks(listCopy);
+      loginData.tasks = listCopy;
+    setLoginData(loginData);
+    userData.splice(userIndex, 1, loginData);
+    setUserData(userData);
+>>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
       setNewTask({
         title: "",
         explanation: "",
@@ -318,6 +338,10 @@ function Atasks() {
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+    loginData.tasks = updatedTasks;
+    setLoginData(loginData);
+    userData.splice(userIndex, 1, loginData);
+    setUserData(userData);
   };
 
   const handleDragEnd = (result) => {
@@ -330,8 +354,19 @@ function Atasks() {
     reorderedTasks.splice(result.destination.index, 0, movedTask);
 
     setTasks(reorderedTasks);
+    loginData.tasks = reorderedTasks;
+    setLoginData(loginData);
+    userData.splice(userIndex, 1, loginData);
+    setUserData(userData);
   };
+<<<<<<< HEAD
 
+=======
+  useEffect(() => {
+    localStorage.setItem("logins", JSON.stringify(loginData));
+    localStorage.setItem("users", JSON.stringify(userData));
+  }, [loginData.tasks, userData[userIndex].tasks])
+>>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
   return (
     <>
       <h1>My Missions</h1>
@@ -479,7 +514,7 @@ function Atasks() {
                          
                           <td>
                             {task.dueDate
-                              ? task.dueDate.toISOString().slice(0, 10)
+                              ? task.dueDate.slice(0, 10)
                               : "Not Set"}
                           </td>
                           <td>
