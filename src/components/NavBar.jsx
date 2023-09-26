@@ -1,7 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  const handleLoginNavigate = () => {
+    navigate("/login");
+  };
+
+  const handleProfileNavigate = () => {
+    navigate("/profile");
+  };
+
   return (
     <header>
       <h1>ScheduPro</h1>
@@ -10,17 +20,21 @@ function NavBar() {
           <NavLink to={"/"}>
             <li>Home page</li>
           </NavLink>
-          <NavLink to={"pricing"}>
+          <NavLink to={"/pricing"}>
             <li>Pricing</li>
           </NavLink>
-          <NavLink to={"Contact"}>
-            <li>contact us</li>
+          <NavLink to={"/Contact"}>
+            <li>Contact us</li>
           </NavLink>
         </ul>
       </nav>
-      <NavLink to={"LogIn"} className="Log-in btn">
+      <button onClick={handleLoginNavigate} className="Log-in btn">
         Log-in
-      </NavLink>
+      </button>
+
+      <button onClick={handleProfileNavigate} className="profile btn">
+        Profile
+      </button>
     </header>
   );
 }

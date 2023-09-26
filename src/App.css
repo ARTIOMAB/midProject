@@ -17,7 +17,7 @@ header h1 {
 }
 nav ul a {
   text-decoration-line: none; 
-  
+  color: #F8F9FA;
 }
 nav ul a:visited{
 color: white;
@@ -35,10 +35,12 @@ border-bottom: 1px solid white;
 }
 
 header .Log-in {
-  margin-left:50%;
+  margin-left:700px;
+
 }
 
 .btn {
+  margin-left: 15px;
   color: whitesmoke;
   text-decoration: none;
   border: 2px solid whitesmoke;
@@ -104,7 +106,7 @@ main{
 .pricing-card{
   max-width: 470px;
   height:80vh;
-  background-color:#646fa1;
+  background-color:#9aa2c1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,5 +150,104 @@ main{
   border-radius: 5px;
   border: none;
 }
+.contact-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px;
+  border: none;
+  background-color:  #e5e5e5  ;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+#login {
+  width:50vw;
+  margin: auto;
+}
+/* .profile-container{
+  width: 100vw;
+  height: 100vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+ .profile-card{
+  width: 600px;
+  height: 600px; 
+  background-color:#646fa1;
+}
+.profile-card-userData{
+  height: 100%;
+  width: 100%;
+}
+ */
+ /* Profile.css */
+
+/* Styles for the profile-container */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Styles for the profile-card */
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  margin-top: 20px;
+}
+.profile-card-userData {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-card-userData div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
 
 

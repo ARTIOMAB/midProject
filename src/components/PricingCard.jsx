@@ -1,6 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function PricingCard(props) {
+  const navigate = useNavigate();
+  const handeLBuyClick = () => {
+    navigate("/payment");
+  };
   return (
     <div className="pricing-card">
       <h2 className="card-heading">{props.heading}</h2>
@@ -13,7 +18,9 @@ function PricingCard(props) {
         <li>{props.includes2}</li>
         <li>{props.includes3}</li>
       </ul>
-      <button>{props.buy}</button>
+      <button onClick={handeLBuyClick} className="pricingCard-buy-btn">
+        buy
+      </button>
     </div>
   );
 }

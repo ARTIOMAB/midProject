@@ -1,13 +1,12 @@
-// Pricing.js
 import React, { useContext } from "react";
 import PricingCard from "../components/PricingCard";
-import { DataContext } from "../DataContext";
+import { PricingContext } from "../Context";
 
 function Pricing() {
-  const pricingData = useContext(DataContext);
+  const pricingData = useContext(PricingContext);
 
   if (!pricingData) {
-    return null; // Return null if pricingData is not available yet
+    return console.log("hello");
   }
 
   const {
