@@ -6,14 +6,16 @@ const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ tasks }) => {
   return (
-    <div>
-      <Calendar
-        localizer={localizer}
-        events={tasks}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500, color: "white" }}
-      />
+    <div className="calender-container">
+      <div>
+        <Calendar
+          localizer={localizer}
+          events={tasks}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500, color: "white" }}
+        />
+      </div>
     </div>
   );
 };

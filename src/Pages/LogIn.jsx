@@ -30,28 +30,30 @@ export default function LogIn() {
     }
   };
   return (
-    <div id="login">
-      <h1>Login</h1>
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="UserName"
-          {...register("username", { required: true, maxLength: 20 })}
-        />
-        {errors.username && <span>User Name is required</span>}
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password", { required: true, minLength: 8 })}
-        />
-        {errors.password && <span>Password Is Required</span>}
-        <br />
+    <div className="login-container">
+      <div id="login">
+        <h1>Login</h1>
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            placeholder="UserName"
+            {...register("username", { required: true, maxLength: 20 })}
+          />
+          {errors.username && <span>User Name is required</span>}
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", { required: true, minLength: 8 })}
+          />
+          {errors.password && <span>Password Is Required</span>}
+          <br />
 
-        <button>
-          <input type="submit" />
-        </button>
-      </form>
-      <Link to={"Register"}>Not Registered Yet?</Link>
+          <button>
+            <input type="submit" />
+          </button>
+        </form>
+        <Link to={"Register"}>Not Registered Yet?</Link>
+      </div>
     </div>
   );
 }

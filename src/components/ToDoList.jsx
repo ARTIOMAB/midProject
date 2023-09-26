@@ -52,23 +52,25 @@ function ToDoList() {
   return (
     <main>
       <main>
-        <form onSubmit={handleSubmit}>
-          <input
-            value={input}
-            type="text"
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <div>
-          <ul>
-            {taskData.map((element, i) => (
-              <li key={i}>
-                {element}
-                <button onClick={() => deleteTask(element)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+        <div className="toToList-container">
+          <form onSubmit={handleSubmit}>
+            <input
+              value={input}
+              type="text"
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button type="submit">Submit</button>
+          </form>
+          <div>
+            <ul>
+              {taskData.map((element, i) => (
+                <li key={i}>
+                  {element}
+                  <button onClick={() => deleteTask(element)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </main>
     </main>

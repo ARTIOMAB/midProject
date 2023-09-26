@@ -1,14 +1,26 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { LoginContext, UserContext } from "../Context";
 
-function Payment({ paymentData, setPaymentData }) {
+function Payment() {
   const navigate = useNavigate();
-
+  const { loginData, setLoginData } = useContext(LoginContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const [paymentData, setPaymentData] = useState(loginData.tasks || []);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const userIndex = userData.findIndex(
+    (user) => user.username === loginData.username
+  );
+
+  useEffect(() => {
+    localStorage.setItem("logins", JSON.stringify(loginData));
+    localStorage.setItem("users", JSON.stringify(userData));
+  }, [loginData, userData]);
 
   const onSubmit = (data) => {
     if (!/^\d{2}$/.test(data.creditCardNumber)) {
@@ -28,10 +40,21 @@ function Payment({ paymentData, setPaymentData }) {
       alert("Expiry Date must be greater than today");
       return;
     }
-
+    const setPayment = (element) => {
+      const updatePayment = paymentData.filter((item) => item !== element);
+      setPaymentData(updatePayment);
+      setLoginData((prevLoginData) => ({
+        ...prevLoginData,
+        payment: updatePayment,
+      }));
+      const updateUserData = [...userData];
+      updateUserData[userIndex] = { ...loginData, payment: updatePayment };
+      setUserData(updateUserData);
+      console.log(updateUserData);
+    };
     console.log(data);
     setPaymentData((prev) => [...prev, data]);
-    navigate("/");
+    navigate("/workzone");
   };
 
   return (
@@ -64,7 +87,9 @@ function Payment({ paymentData, setPaymentData }) {
         />
         {errors.cvv && <span>CVV is required</span>}
 
-        <button type="submit">Pay Now</button>
+        <button className="pay-button" type="submit">
+          Pay Now
+        </button>
       </form>
     </div>
   );

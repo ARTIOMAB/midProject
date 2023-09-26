@@ -3,7 +3,7 @@ import { Button, Modal, Box } from "@mui/material";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
-function Atasks() {
+function AtTasks() {
   const [open, setOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
@@ -233,4 +233,4 @@ function Atasks() {
   );
 }
 
-export default Atasks;
+export default AtTasks;
