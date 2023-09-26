@@ -7,10 +7,7 @@ function WorkZone() {
   return (
     <div className="workzone-container">
       <h2>WorkZone</h2>
-<<<<<<< HEAD
-=======
       
->>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
       <div className="calender">
         <MyCalendar />
       </div>

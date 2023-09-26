@@ -1,20 +1,26 @@
-<<<<<<< HEAD
-// import React, { useState } from "react";
+// import React, { useState, useContext, useEffect } from "react";
 // import { Button, Modal, Box } from "@mui/material";
+// import { LoginContext, UserContext } from "../Context";
 // import DatePicker from "react-datepicker";
 // import { DragDropContext, Draggable } from "react-beautiful-dnd";
 // import StrictModeDroppable from "../components/StrictModeDroppable";
-// import "./AtTasks.css"
 // import "react-datepicker/dist/react-datepicker.css";
+// import "./AtTasks.css";
 
 // function Atasks() {
+//   const { loginData, setLoginData } = useContext(LoginContext);
+//   const { userData, setUserData } = useContext(UserContext);
 //   const [open, setOpen] = useState(false);
-//   const [tasks, setTasks] = useState([]);
+//   const userIndex = userData.findIndex(
+//     (user) => user.username === loginData.username
+//   );
+//   const [tasks, setTasks] = useState(loginData.tasks || []);
 //   const [newTask, setNewTask] = useState({
 //     title: "",
 //     explanation: "",
-//     dueDate: null,
-//     hour: "",
+//     dueDate: new Date(),
+//     startTime: new Date(),
+//     finishTime: new Date(),
 //     isAllDay: false,
 //     duration: "",
 //     notes: "",
@@ -31,12 +37,18 @@
 
 //   const addTask = () => {
 //     if (newTask.title.trim() !== "" && newTask.priority !== "") {
-//       setTasks([...tasks, newTask]);
+//       const listCopy = ([...tasks, newTask]);
+//       setTasks(listCopy);
+//       loginData.tasks = listCopy;
+//     setLoginData(loginData);
+//     userData.splice(userIndex, 1, loginData);
+//     setUserData(userData);
 //       setNewTask({
 //         title: "",
 //         explanation: "",
-//         dueDate: null,
-//         hour: "",
+//         dueDate: new Date(),
+//         startTime: new Date(),
+//         finishTime: new Date(),
 //         isAllDay: false,
 //         duration: "",
 //         notes: "",
@@ -48,6 +60,10 @@
 //   const deleteTask = (index) => {
 //     const updatedTasks = tasks.filter((_, i) => i !== index);
 //     setTasks(updatedTasks);
+//     loginData.tasks = updatedTasks;
+//     setLoginData(loginData);
+//     userData.splice(userIndex, 1, loginData);
+//     setUserData(userData);
 //   };
 
 //   const handleDragEnd = (result) => {
@@ -60,12 +76,20 @@
 //     reorderedTasks.splice(result.destination.index, 0, movedTask);
 
 //     setTasks(reorderedTasks);
+//     loginData.tasks = reorderedTasks;
+//     setLoginData(loginData);
+//     userData.splice(userIndex, 1, loginData);
+//     setUserData(userData);
 //   };
+//   useEffect(() => {
+//     localStorage.setItem("logins", JSON.stringify(loginData));
+//     localStorage.setItem("users", JSON.stringify(userData));
+//   }, [loginData.tasks, userData[userIndex].tasks])
 //   return (
 //     <>
-//       <h1>my missions</h1>
+//       <h1>My Missions</h1>
 //       <Button id="addTaskBTN" onClick={handleOpen}>
-//         Add Tasks
+//         Add Task
 //       </Button>
 //       <div id="Container">
 //         <Modal
@@ -101,60 +125,60 @@
 //                 }
 //               />
 
-//               <label>
-//                 2. Write anything that will help you complete the task{" "}
-//               </label>
-//               <input
-//                 className="inputGroup"
-//                 id="explanation-input"
-//                 type="text"
-//                 placeholder="Task Explanation"
-//                 value={newTask.explanation}
-//                 onChange={(e) =>
-//                   setNewTask({ ...newTask, explanation: e.target.value })
-//                 }
-//               />
+             
 
-//               <label>3. Deadline Date: </label>
+//               <label>3. Deadline Date:</label>
 //               <DatePicker
-//                 // className="inputGroup"
-//                 // place
-//                 // holder="Task Deadline Date"
-//                 // selected={newTask.dueDate}
-//                 // onChange={(date) => setNewTask({ ...newTask, dueDate: date })}
-//                 // dateFormat="yyyy-MM-dd"
 //                 className="inputGroup"
 //                 placeholderText="Task Deadline Date"
 //                 selected={newTask.dueDate}
-//                 onChange={(date) => setNewTask({ ...newTask, dueDate: date })}
+//                 onChange={(date) => {
+                  
+//                   setNewTask({ ...newTask, dueDate: date })
+//                 }}
 //                 dateFormat="yyyy-MM-dd"
 //               />
 
-//               <label>4. Hour:</label>
-//               <input
+//               <label>4. Start Time:</label>
+//               <DatePicker
 //                 className="inputGroup"
-//                 id="hour-input"
-//                 type="text"
-//                 placeholder="Deadline hour"
-//                 value={newTask.hour}
+//                 placeholderText="Start Time"
+//                 selected={newTask.startTime}
+//                 onChange={(date) => setNewTask({ ...newTask, startTime: date })}
+//                 showTimeSelect
+//                 showTimeSelectOnly
+//                 timeIntervals={15}
+//                 timeCaption="Time"
+//                 dateFormat="h:mm aa"
+//               />
+
+//               <label>5. Finish Time:</label>
+//               <DatePicker
+//                 className="inputGroup"
+//                 placeholderText="Finish Time"
+//                 selected={newTask.finishTime}
+//                 onChange={(date) =>
+//                   setNewTask({ ...newTask, finishTime: date })
+//                 }
+//                 showTimeSelect
+//                 showTimeSelectOnly
+//                 timeIntervals={15}
+//                 timeCaption="Time"
+//                 dateFormat="h:mm aa"
+//               />
+
+//               <label>6. All Day Event:</label>
+//               <input
+//                 type="checkbox"
+//                 checked={newTask.isAllDay}
+                
 //                 onChange={(e) =>
-//                   setNewTask({ ...newTask, hour: e.target.value })
+//                   setNewTask({ ...newTask, isAllDay: e.target.checked })
 //                 }
 //               />
 
-//               <label>5. Duration:</label>
-//               <input
-//                 className="inputGroup"
-//                 id="duration-input"
-//                 type="text"
-//                 placeholder="Estimated Duration"
-//                 value={newTask.duration}
-//                 onChange={(e) =>
-//                   setNewTask({ ...newTask, duration: e.target.value })
-//                 }
-//               />
-
-//               <label>6. Notes or Comments:</label>
+             
+//               <label>8. Notes or Comments:</label>
 //               <textarea
 //                 className="inputGroup"
 //                 id="notes-input"
@@ -165,7 +189,7 @@
 //                 }
 //               />
 
-//               <label>7. Priority:</label>
+//               <label>9. Priority:</label>
 //               <select
 //                 className="inputGroup"
 //                 id="priority-input"
@@ -180,13 +204,8 @@
 //                 <option value="high">High</option>
 //               </select>
 //             </div>
-//             <div id="2BTNS">
+//             <div id="2BTNs">
 //               <button onClick={addTask}>Add Task</button>
-//               <p id="parent-modal-description">
-//                 Enter task details, select a due date, specify the time (HH:mm),
-//                 select a priority, then click on 'Add Task', and click 'Close'
-//                 to close the window!
-//               </p>
 //               <button onClick={handleClose}>Close window</button>
 //             </div>
 //           </Box>
@@ -213,14 +232,19 @@
 //                           {...provided.dragHandleProps}
 //                         >
 //                           <td>{task.title}</td>
-//                           <td>{task.explanation}</td>
+                         
 //                           <td>
-//                             {task.dueDate
-//                               ? task.dueDate.toISOString().slice(0, 10)
-//                               : "Not Set"}
+//                             {task.dueDate ?
+//                               task.dueDate.toString().slice(0, 10) : "Not yet scheduled"
+//                               }
 //                           </td>
-//                           <td>{task.hour || "Not Set"}</td>
-//                           <td>{task.duration}</td>
+//                           <td>
+//                             {task.isAllDay
+//                               ? "All Day"
+//                               : task.startTime &&
+//                                 task.finishTime &&
+//                                 `${Number(task.startTime.slice(11, 13))+3} - ${Number(task.finishTime.slice(11, 13))+3}`}
+//                           </td>
 //                           <td>{task.notes}</td>
 //                           <td>{task.priority}</td>
 //                           <td>
@@ -243,10 +267,7 @@
 // }
 
 // export default Atasks;
-import React, { useState } from "react";
-=======
 import React, { useState, useContext, useEffect } from "react";
->>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
 import { Button, Modal, Box } from "@mui/material";
 import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
@@ -266,9 +287,9 @@ function Atasks() {
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
-    dueDate: null,
-    startTime: null,
-    finishTime: null,
+    dueDate: new Date(),
+    startTime: new Date(),
+    finishTime: new Date(),
     isAllDay: false,
     duration: "",
     notes: "",
@@ -284,49 +305,27 @@ function Atasks() {
   };
 
   const addTask = () => {
-<<<<<<< HEAD
-    if (
-      newTask.title.trim() !== "" &&
-      newTask.priority !== "" &&
-      newTask.dueDate
-    ) {
-      const event = {
-        title: newTask.title,
-        explanation: newTask.explanation,
-        start: newTask.isAllDay
-          ? new Date(newTask.dueDate.setHours(0, 0, 0))
-          : new Date(newTask.dueDate).setHours(
-              newTask.startTime.getHours(),
-              newTask.startTime.getMinutes()
-            ),
-        end: newTask.isAllDay
-          ? new Date(newTask.dueDate.setHours(23, 59, 59))
-          : new Date(newTask.dueDate).setHours(
-              newTask.finishTime.getHours(),
-              newTask.finishTime.getMinutes()
-            ),
-        duration: newTask.duration,
-        notes: newTask.notes,
-        priority: newTask.priority,
+    if (newTask.title.trim() !== "" && newTask.priority !== "") {
+      // Format dates as strings in a specific format
+      const formattedNewTask = {
+        ...newTask,
+        dueDate: newTask.dueDate.toISOString(),
+        startTime: newTask.startTime.toISOString(),
+        finishTime: newTask.finishTime.toISOString(),
       };
 
-      setTasks([...tasks, event]);
-
-=======
-    if (newTask.title.trim() !== "" && newTask.priority !== "") {
-      const listCopy = ([...tasks, newTask]);
+      const listCopy = ([...tasks, formattedNewTask]);
       setTasks(listCopy);
       loginData.tasks = listCopy;
-    setLoginData(loginData);
-    userData.splice(userIndex, 1, loginData);
-    setUserData(userData);
->>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
+      setLoginData(loginData);
+      userData.splice(userIndex, 1, loginData);
+      setUserData(userData);
       setNewTask({
         title: "",
         explanation: "",
-        dueDate: null,
-        startTime: null,
-        finishTime: null,
+        dueDate: new Date(),
+        startTime: new Date(),
+        finishTime: new Date(),
         isAllDay: false,
         duration: "",
         notes: "",
@@ -359,14 +358,32 @@ function Atasks() {
     userData.splice(userIndex, 1, loginData);
     setUserData(userData);
   };
-<<<<<<< HEAD
 
-=======
   useEffect(() => {
     localStorage.setItem("logins", JSON.stringify(loginData));
     localStorage.setItem("users", JSON.stringify(userData));
-  }, [loginData.tasks, userData[userIndex].tasks])
->>>>>>> b2eb69d5b2669ee38048566340e46b83a65a6180
+  }, [loginData.tasks, userData[userIndex].tasks]);
+
+  // When retrieving tasks from localStorage
+  useEffect(() => {
+    const storedLoginData = JSON.parse(localStorage.getItem("logins")) || {};
+    const storedUserData = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Parse the date strings back to Date objects
+    const parsedUserData = storedUserData.map((user) => ({
+      ...user,
+      tasks: user.tasks.map((task) => ({
+        ...task,
+        dueDate: new Date(task.dueDate),
+        startTime: new Date(task.startTime),
+        finishTime: new Date(task.finishTime),
+      })),
+    }));
+
+    setLoginData(storedLoginData);
+    setUserData(parsedUserData);
+  }, []);
+
   return (
     <>
       <h1>My Missions</h1>
@@ -407,14 +424,14 @@ function Atasks() {
                 }
               />
 
-             
-
               <label>3. Deadline Date:</label>
               <DatePicker
                 className="inputGroup"
                 placeholderText="Task Deadline Date"
                 selected={newTask.dueDate}
-                onChange={(date) => setNewTask({ ...newTask, dueDate: date })}
+                onChange={(date) => {
+                  setNewTask({ ...newTask, dueDate: date });
+                }}
                 dateFormat="yyyy-MM-dd"
               />
 
@@ -450,13 +467,11 @@ function Atasks() {
               <input
                 type="checkbox"
                 checked={newTask.isAllDay}
-                
                 onChange={(e) =>
                   setNewTask({ ...newTask, isAllDay: e.target.checked })
                 }
               />
 
-             
               <label>8. Notes or Comments:</label>
               <textarea
                 className="inputGroup"
@@ -511,18 +526,18 @@ function Atasks() {
                           {...provided.dragHandleProps}
                         >
                           <td>{task.title}</td>
-                         
+
                           <td>
                             {task.dueDate
-                              ? task.dueDate.slice(0, 10)
-                              : "Not Set"}
+                              ? task.dueDate.toString().slice(0, 10)
+                              : "Not yet scheduled"}
                           </td>
                           <td>
                             {task.isAllDay
                               ? "All Day"
                               : task.startTime &&
                                 task.finishTime &&
-                                `${task.startTime.toLocaleTimeString()} - ${task.finishTime.toLocaleTimeString()}`}
+                                `${Number(task.startTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)} - ${Number(task.finishTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)}`}
                           </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>
