@@ -19,12 +19,9 @@ function App() {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
-  const [paymentData, setPaymentData] = useState(
-    JSON.parse(localStorage.getItem("payment")) || []
-  );
 
   useEffect(() => {
-    localStorage.setItem("login", JSON.stringify(loginData)),
+    localStorage.setItem("logins", JSON.stringify(loginData)),
       localStorage.setItem("users", JSON.stringify(userData));
   }, [loginData, userData]);
 
@@ -46,7 +43,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="LogIn/Register"
+                  path="login/register"
                   element={
                     <Register userData={userData} setUserData={setUserData} />
                   }

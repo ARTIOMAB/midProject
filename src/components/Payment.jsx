@@ -7,7 +7,7 @@ function Payment() {
   const navigate = useNavigate();
   const { loginData, setLoginData } = useContext(LoginContext);
   const { userData, setUserData } = useContext(UserContext);
-  const [paymentData, setPaymentData] = useState(loginData.tasks || []);
+  const [paymentData, setPaymentData] = useState(loginData.payment || []);
   const {
     register,
     handleSubmit,
@@ -16,11 +16,6 @@ function Payment() {
   const userIndex = userData.findIndex(
     (user) => user.username === loginData.username
   );
-
-  useEffect(() => {
-    localStorage.setItem("logins", JSON.stringify(loginData));
-    localStorage.setItem("users", JSON.stringify(userData));
-  }, [loginData, userData]);
 
   const onSubmit = (data) => {
     if (!/^\d{2}$/.test(data.creditCardNumber)) {
@@ -40,22 +35,26 @@ function Payment() {
       alert("Expiry Date must be greater than today");
       return;
     }
-    const setPayment = (element) => {
-      const updatePayment = paymentData.filter((item) => item !== element);
-      setPaymentData(updatePayment);
-      setLoginData((prevLoginData) => ({
-        ...prevLoginData,
-        payment: updatePayment,
-      }));
-      const updateUserData = [...userData];
-      updateUserData[userIndex] = { ...loginData, payment: updatePayment };
-      setUserData(updateUserData);
-      console.log(updateUserData);
-    };
-    console.log(data);
-    setPaymentData((prev) => [...prev, data]);
+
+    const updatedPayment = [...paymentData, data];
+    setPaymentData(updatedPayment);
+
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      payment: updatedPayment,
+    }));
+
+    const updatedUserData = [...userData];
+    updatedUserData[userIndex] = { ...loginData, payment: updatedPayment };
+    setUserData(updatedUserData);
+    console.log(updatedUserData);
     navigate("/workzone");
   };
+
+  useEffect(() => {
+    localStorage.setItem("logins", JSON.stringify(loginData));
+    localStorage.setItem("users", JSON.stringify(userData));
+  }, [loginData, userData]);
 
   return (
     <div id="payment-card">
