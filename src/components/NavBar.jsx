@@ -18,8 +18,8 @@ function NavBar() {
           </NavLink>
         </ul>
       </nav>
-      <NavLink to={"Profile"} className="profile btn">
-        Profile
+      <NavLink to={"LogIn"} className="Log-in btn">
+        Log-in
       </NavLink>
     </header>
   );
