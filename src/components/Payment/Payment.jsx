@@ -1,14 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { useContext, useState, useEffect } from "react";
-import { LoginContext, UserContext } from "../Context";
+import { useContext } from "react";
+import { UserContext } from "../../Context";
 import "./payment.css";
-=======
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
 
-function Payment({ paymentData, setPaymentData }) {
+function Payment() {
   const navigate = useNavigate();
+  const { userData, setUserData } = useContext(UserContext);
 
   const {
     register,
@@ -36,7 +34,20 @@ function Payment({ paymentData, setPaymentData }) {
     }
 
     console.log(data);
-    setPaymentData((prev) => [...prev, data]);
+
+    const payment = {
+      creditCardNumber: data.creditCardNumber,
+      cvv: data.cvv,
+      expiryDate: data.expiryDate,
+    };
+
+    const updatedUserData = {
+      ...userData,
+      payment: [...userData.payment, payment],
+    };
+
+    setUserData(updatedUserData);
+
     navigate("/");
   };
 

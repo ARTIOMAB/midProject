@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { UserContext, LoginContext } from "../Context";
+import { UserContext, LoginContext } from "../../Context";
 import { useContext } from "react";
+import "./login.css";
 export default function LogIn() {
   const { userData } = useContext(UserContext);
   const { setLoginData } = useContext(LoginContext);
@@ -30,7 +31,6 @@ export default function LogIn() {
     }
   };
   return (
-<<<<<<< HEAD
     <div className="login-container">
       <div className="login-card">
         <h1>Login</h1>
@@ -59,30 +59,6 @@ export default function LogIn() {
         </form>
         <Link to={"Register"}>Not Registered Yet?</Link>
       </div>
-=======
-    <div id="login">
-      <h1>Login</h1>
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="UserName"
-          {...register("username", { required: true, maxLength: 20 })}
-        />
-        {errors.username && <span>User Name is required</span>}
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password", { required: true, minLength: 8 })}
-        />
-        {errors.password && <span>Password Is Required</span>}
-        <br />
-
-        <button>
-          <input type="submit" />
-        </button>
-      </form>
-      <Link to={"Register"}>Not Registered Yet?</Link>
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
     </div>
   );
 }

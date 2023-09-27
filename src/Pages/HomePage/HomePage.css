@@ -18,7 +18,8 @@
     font-size: 1.7rem;
     width: 45vw;
     margin-left: 60px;
-    margin-top: -70px;
+    
+   /*  margin-top: -70px; */
   }
   .home-image{
     grid-area: 1 / 4 / 5 / 6;

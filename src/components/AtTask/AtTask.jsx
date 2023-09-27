@@ -1,25 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Box } from "@mui/material";
-import { LoginContext, UserContext } from "../Context";
-import DatePicker from "react-datepicker";
+import { LoginContext, UserContext } from "../../Context";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
-import StrictModeDroppable from "../components/StrictModeDroppable";
-<<<<<<< HEAD
-/* import "./AtTasks.css"; */
-function AtTasks() {
-=======
-import "react-datepicker/dist/react-datepicker.css";
+import StrictModeDroppable from "../StrictModeDroppable";
 import "./AtTasks.css";
 
-function Atasks({tasks, setTasks}) {
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
+function AtTask() {
   const { loginData, setLoginData } = useContext(LoginContext);
   const { userData, setUserData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const userIndex = userData.findIndex(
     (user) => user.username === loginData.username
   );
-  // const [tasks, setTasks] = useState(loginData.tasks || []);
+  const [tasks, setTasks] = useState(loginData.tasks || []);
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
@@ -41,29 +34,8 @@ function Atasks({tasks, setTasks}) {
   };
 
   const addTask = () => {
-<<<<<<< HEAD
-    setNewTask({
-      title: "",
-      explanation: "",
-      dueDate: new Date(),
-      startTime: new Date(),
-      finishTime: new Date(),
-      isAllDay: false,
-      duration: "",
-      notes: "",
-      priority: "",
-    });
-=======
     if (newTask.title.trim() !== "" && newTask.priority !== "") {
-      // Format dates as strings in a specific format
-      const formattedNewTask = {
-        ...newTask,
-        dueDate: newTask.dueDate.toISOString(),
-        startTime: newTask.startTime.toISOString(),
-        finishTime: newTask.finishTime.toISOString(),
-      };
-
-      const listCopy = ([...tasks, formattedNewTask]);
+      const listCopy = [...tasks, newTask];
       setTasks(listCopy);
       loginData.tasks = listCopy;
       setLoginData(loginData);
@@ -81,7 +53,6 @@ function Atasks({tasks, setTasks}) {
         priority: "",
       });
     }
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
   };
 
   const deleteTask = (index) => {
@@ -114,24 +85,12 @@ function Atasks({tasks, setTasks}) {
     localStorage.setItem("users", JSON.stringify(userData));
   }, [loginData.tasks, userData[userIndex].tasks]);
 
-  // When retrieving tasks from localStorage
   useEffect(() => {
     const storedLoginData = JSON.parse(localStorage.getItem("logins")) || {};
     const storedUserData = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Parse the date strings back to Date objects
-    const parsedUserData = storedUserData.map((user) => ({
-      ...user,
-      tasks: user.tasks.map((task) => ({
-        ...task,
-        dueDate: new Date(task.dueDate),
-        startTime: new Date(task.startTime),
-        finishTime: new Date(task.finishTime),
-      })),
-    }));
-
     setLoginData(storedLoginData);
-    setUserData(parsedUserData);
+    setUserData(storedUserData);
   }, []);
 
   return (
@@ -175,42 +134,36 @@ function Atasks({tasks, setTasks}) {
               />
 
               <label>3. Deadline Date:</label>
-              <DatePicker
+              <input
                 className="inputGroup"
-                placeholderText="Task Deadline Date"
-                selected={newTask.dueDate}
-                onChange={(date) => {
-                  setNewTask({ ...newTask, dueDate: date });
-                }}
-                dateFormat="dd-MM-yyyy"
+                type="date"
+                placeholder="Task Deadline Date"
+                value={newTask.dueDate}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, dueDate: e.target.value })
+                }
               />
 
               <label>4. Start Time:</label>
-              <DatePicker
+              <input
                 className="inputGroup"
-                placeholderText="Start Time"
-                selected={newTask.startTime}
-                onChange={(date) => setNewTask({ ...newTask, startTime: date })}
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
+                type="time"
+                placeholder="Start Time"
+                value={newTask.startTime}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, startTime: e.target.value })
+                }
               />
 
               <label>5. Finish Time:</label>
-              <DatePicker
+              <input
                 className="inputGroup"
-                placeholderText="Finish Time"
-                selected={newTask.finishTime}
-                onChange={(date) =>
-                  setNewTask({ ...newTask, finishTime: date })
+                type="time"
+                placeholder="Finish Time"
+                value={newTask.finishTime}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, finishTime: e.target.value })
                 }
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
               />
 
               <label>6. All Day Event:</label>
@@ -266,7 +219,7 @@ function Atasks({tasks, setTasks}) {
                   {tasks.map((task, index) => (
                     <Draggable
                       key={index}
-                      draggableId={`task-${index}`}
+                      draggableId={`task - ${index}`}
                       index={index}
                     >
                       {(provided) => (
@@ -287,11 +240,8 @@ function Atasks({tasks, setTasks}) {
                               ? "All Day"
                               : task.startTime &&
                                 task.finishTime &&
-                                `${
-                                  Number(task.startTime.slice(11, 13)) + 3
-                                }${task.finishTime.slice(13, 16)} - ${
-                                  Number(task.finishTime.slice(11, 13)) + 3
-                                }${task.finishTime.slice(13, 16)}`}
+                                `${task.startTime}
+                                ${task.finishTime}`}
                           </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>
@@ -314,4 +264,4 @@ function Atasks({tasks, setTasks}) {
   );
 }
 
-export default Atasks;
+export default AtTask;

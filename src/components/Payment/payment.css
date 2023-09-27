@@ -6,7 +6,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
-    margin: 0 auto; /* Center the card horizontally */
+    margin: 0 auto; 
     margin-top: 20px;
   }
   
@@ -16,7 +16,7 @@
   
   #payment-card label {
     display: block;
-    text-align: left; /* Align labels to the left */
+    text-align: left; 
     margin-top: 10px;
     font-weight: bold;
   }

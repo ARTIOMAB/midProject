@@ -1,4 +1,6 @@
-
+label{
+    color:#0e1a40;
+}
 #AllContainer {
     background-color: #0e1a40;
     color: #fff;
@@ -17,10 +19,9 @@
     margin-right: 3vw;
   }
   
-  /* Style the h1 and buttons */
-  h1, button {
-    color: #fff;
-    background-color: #0e1a40;
+
+  .task-button {
+    color: #4482C1;
     border: none;
     padding: 10px 20px;
     margin: 10px;
@@ -30,16 +31,16 @@
   
   button:hover {
     background-color: #304ffe; 
+    color : #fff;
   }
   
-  /* Style the modal */
+  
   .NTWindow {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
   }
   
-  /* Style the form elements */
   .inputGroup {
     width: 100%;
     padding: 10px;
@@ -50,7 +51,7 @@
   
   select.inputGroup {
     appearance: none;
-    /* background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Color_icon_blue.png/640px-Color_icon_blue.png") no-repeat; */
+    
     background-size: 20px;
     background-position: 95% center;
   }
@@ -67,10 +68,10 @@
     margin-left: 3vh;
   }
  #addTaskBTN:hover {
-    background-color: #0056a0; /* Change to the desired hover color */
+    background-color: #0056a0; 
   }
   
-  /* Add animations to the modal */
+ 
   .modal-entering, .modal-exiting, .modal-exited {
     opacity: 0;
     transform: translateY(-50px);
@@ -82,8 +83,7 @@
     transform: translateY(0);
     transition: opacity 0.3s, transform 0.3s;
   }
-  
-  /* Style the table */
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -95,18 +95,17 @@
     text-align: left;
   }
   
-  /* Add space between tasks */
+ 
   table tr {
     margin-bottom: 10px;
   }
   
-  /* Add animations to the table rows */
   tr {
     transition: background-color 0.3s;
   }
   
   tr:hover {
-    background-color: #263238; /* Darker blue on hover */
+    background-color: #263238; 
   }
   h1{
     display: flex;
