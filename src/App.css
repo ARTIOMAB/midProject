@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 body{
@@ -5,8 +6,118 @@ body{
   padding: 0;
   box-sizing: border-box;
   
+=======
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e5e5e5;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align items horizontally */
+  border-bottom: 2px solid #f8f9fa;
+  background-color: #646fa1;
+  color: #ffffff;
+}
 
+header h1 {
+  margin-left: 10px;
+  font-size: 50px;
+}
 
+nav ul a {
+  text-decoration-line: none;
+  color: #f8f9fa;
+}
 
+nav ul a:visited {
+  color: white;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline;
+  padding: 5px;
+  font-size: 1.6rem;
+  margin-left: 10px;
+}
+
+nav ul li:hover {
+  border-bottom: 1px solid white;
+}
+
+header .Log-in,
+header .profile {
+  color: whitesmoke;
+  text-decoration: none;
+  border: 2px solid whitesmoke;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+  margin-left: auto; /* Push the buttons to the right */
+}
+
+header .Log-in:hover,
+header .profile:hover {
+  color: white;
+}
+
+header .Log-in::before,
+header .profile::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background-color: purple;
+  z-index: -1;
+  transition: all 1s;
+}
+
+header .Log-in:hover::before,
+header .profile:hover::before {
+  width: 160%;
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
+}
+
+/* Responsive CSS for iPhones */
+@media screen and (max-width: 375px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 30px;
+  }
+
+<<<<<<< HEAD
+
+=======
+  nav ul {
+    margin-top: 10px;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 5px 0;
+  }
+
+  header .Log-in,
+  header .profile {
+    margin-top: 10px;
+    margin-left: 0; /* Reset margin for buttons on small screens */
+  }
+}
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545

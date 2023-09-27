@@ -32,40 +32,38 @@ export default function Register({ setUserData, userData }) {
   return (
     <main id="register">
       <h1>Register</h1>
-      <div className="register-container">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            placeholder="UserName"
-            {...register("username", { required: true, maxLength: 20 })}
-          />
-          {errors.username && <span>UserName is required</span>}
-          <input
-            type="email"
-            placeholder="Email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && <span>email is required</span>}
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password", { required: true, minLength: 8 })}
-          />
-          {errors.password && <span>password is required</span>}
-          <input
-            type="date"
-            placeholder="BirthDay"
-            {...register("birthday", { required: true })}
-          />
-          {errors.birthday && <span>birthday is required</span>}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          placeholder="UserName"
+          {...register("username", { required: true, maxLength: 20 })}
+        />
+        {errors.username && <span>UserName is required</span>}
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: true })}
+        />
+        {errors.email && <span>email is required</span>}
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password", { required: true, minLength: 8 })}
+        />
+        {errors.password && <span>password is required</span>}
+        <input
+          type="date"
+          placeholder="BirthDay"
+          {...register("birthday", { required: true })}
+        />
+        {errors.birthday && <span>birthday is required</span>}
 
-          <br />
+        <br />
 
-          <button>
-            <input type="submit" />
-          </button>
-        </form>
-        <Link to={"/login"}>Already registered?</Link>
-      </div>
+        <button>
+          <input type="submit" />
+        </button>
+      </form>
+      <Link to={"/login"}>Already registered?</Link>
     </main>
   );
 }

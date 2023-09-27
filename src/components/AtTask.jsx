@@ -4,15 +4,22 @@ import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
+<<<<<<< HEAD
 /* import "./AtTasks.css"; */
 function AtTasks() {
+=======
+import "react-datepicker/dist/react-datepicker.css";
+import "./AtTasks.css";
+
+function Atasks({tasks, setTasks}) {
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
   const { loginData, setLoginData } = useContext(LoginContext);
   const { userData, setUserData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const userIndex = userData.findIndex(
     (user) => user.username === loginData.username
   );
-  const [tasks, setTasks] = useState(loginData.tasks || []);
+  // const [tasks, setTasks] = useState(loginData.tasks || []);
   const [newTask, setNewTask] = useState({
     title: "",
     explanation: "",
@@ -34,6 +41,7 @@ function AtTasks() {
   };
 
   const addTask = () => {
+<<<<<<< HEAD
     setNewTask({
       title: "",
       explanation: "",
@@ -45,6 +53,35 @@ function AtTasks() {
       notes: "",
       priority: "",
     });
+=======
+    if (newTask.title.trim() !== "" && newTask.priority !== "") {
+      // Format dates as strings in a specific format
+      const formattedNewTask = {
+        ...newTask,
+        dueDate: newTask.dueDate.toISOString(),
+        startTime: newTask.startTime.toISOString(),
+        finishTime: newTask.finishTime.toISOString(),
+      };
+
+      const listCopy = ([...tasks, formattedNewTask]);
+      setTasks(listCopy);
+      loginData.tasks = listCopy;
+      setLoginData(loginData);
+      userData.splice(userIndex, 1, loginData);
+      setUserData(userData);
+      setNewTask({
+        title: "",
+        explanation: "",
+        dueDate: new Date(),
+        startTime: new Date(),
+        finishTime: new Date(),
+        isAllDay: false,
+        duration: "",
+        notes: "",
+        priority: "",
+      });
+    }
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
   };
 
   const deleteTask = (index) => {
@@ -71,6 +108,31 @@ function AtTasks() {
     userData.splice(userIndex, 1, loginData);
     setUserData(userData);
   };
+
+  useEffect(() => {
+    localStorage.setItem("logins", JSON.stringify(loginData));
+    localStorage.setItem("users", JSON.stringify(userData));
+  }, [loginData.tasks, userData[userIndex].tasks]);
+
+  // When retrieving tasks from localStorage
+  useEffect(() => {
+    const storedLoginData = JSON.parse(localStorage.getItem("logins")) || {};
+    const storedUserData = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Parse the date strings back to Date objects
+    const parsedUserData = storedUserData.map((user) => ({
+      ...user,
+      tasks: user.tasks.map((task) => ({
+        ...task,
+        dueDate: new Date(task.dueDate),
+        startTime: new Date(task.startTime),
+        finishTime: new Date(task.finishTime),
+      })),
+    }));
+
+    setLoginData(storedLoginData);
+    setUserData(parsedUserData);
+  }, []);
 
   return (
     <>
@@ -120,7 +182,7 @@ function AtTasks() {
                 onChange={(date) => {
                   setNewTask({ ...newTask, dueDate: date });
                 }}
-                dateFormat="yyyy-MM-dd"
+                dateFormat="dd-MM-yyyy"
               />
 
               <label>4. Start Time:</label>
@@ -252,4 +314,4 @@ function AtTasks() {
   );
 }
 
-export default AtTasks;
+export default Atasks;

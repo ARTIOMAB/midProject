@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./PricingCard.css";
 function PricingCard(props) {
   const navigate = useNavigate();
   const handeLBuyClick = () => {

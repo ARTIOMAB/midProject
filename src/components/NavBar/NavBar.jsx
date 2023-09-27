@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+<<<<<<< HEAD:src/components/NavBar/NavBar.jsx
 import { LoginContext } from "../../Context";
 import "./NavBar.css";
+=======
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545:src/components/NavBar.jsx
 
 function NavBar() {
   const navigate = useNavigate();
-  const { loginData, setLoginData } = useContext(LoginContext);
 
   const handleLoginNavigate = () => {
     navigate("/login");
@@ -14,14 +16,6 @@ function NavBar() {
   const handleProfileNavigate = () => {
     navigate("/profile");
   };
-  const handleWorkZoneNavigate = () => {
-    navigate("/workzone");
-  };
-  const handleLogout = () => {
-    setLoginData({});
-    navigate("/");
-  };
-  const isLoggedIn = !!loginData.username;
 
   return (
     <header>
@@ -39,6 +33,7 @@ function NavBar() {
           </NavLink>
         </ul>
       </nav>
+<<<<<<< HEAD:src/components/NavBar/NavBar.jsx
       {isLoggedIn ? (
         <button
           onClick={handleLogout}
@@ -62,6 +57,15 @@ function NavBar() {
           WorkZone
         </button>
       )}
+=======
+      <button onClick={handleLoginNavigate} className="Log-in btn">
+        Log-in
+      </button>
+
+      <button onClick={handleProfileNavigate} className="profile btn">
+        Profile
+      </button>
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545:src/components/NavBar.jsx
     </header>
   );
 }
