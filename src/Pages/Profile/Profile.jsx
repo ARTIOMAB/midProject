@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../Context";
+import { LoginContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 import "./profile.css";
 function Profile() {
+  const { loginData } = useContext(LoginContext);
   const navigatePayment = useNavigate();
-  const { userData } = useContext(UserContext);
 
-  if (!userData) {
+  if (!loginData) {
     return <div>Error: userData is missing.</div>;
   }
-  const { username, email } = userData;
-  console.log(userData);
+  const { username, email, birthday } = loginData;
+  console.log(loginData);
   const handleClick = () => {
     navigatePayment("/payment");
   };
@@ -22,6 +22,7 @@ function Profile() {
         <div className="profile-card-userData">
           <div>Username: {username}</div>
           <div>Email: {email}</div>
+          <div>Birthday : {birthday}</div>
           <div>Credit Card number:</div>
           <button onClick={handleClick}>Go to Payment</button>
         </div>
