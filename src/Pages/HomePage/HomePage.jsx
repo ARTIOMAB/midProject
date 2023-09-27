@@ -1,8 +1,9 @@
 import React from "react";
+import "./HomePage.css";
 
 function HomePage() {
   return (
-    <main>
+    <main className="home-page">
       <h2 className="main-heading">
         welcome to ScheduPro professional schedule system
       </h2>

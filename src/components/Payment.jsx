@@ -1,5 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+import { useContext, useState, useEffect } from "react";
+import { LoginContext, UserContext } from "../Context";
+import "./payment.css";
+=======
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
 
 function Payment({ paymentData, setPaymentData }) {
   const navigate = useNavigate();
@@ -11,12 +17,12 @@ function Payment({ paymentData, setPaymentData }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (!/^\d{2}$/.test(data.creditCardNumber)) {
+    if (!/^\d{16}$/.test(data.creditCardNumber)) {
       alert("Credit Card number must be exactly 16 digits");
       return;
     }
 
-    if (!/^\d{1}$/.test(data.cvv)) {
+    if (!/^\d{3}$/.test(data.cvv)) {
       alert("CVV must be exactly 3 digits");
       return;
     }

@@ -23,8 +23,13 @@ function Profile() {
         <div className="profile-card-userData">
           <div>userName: {username}</div>
           <div>Email: {email}</div>
+<<<<<<< HEAD
+          <div>Credit Card number: {lastCreditCardNumber}</div>
+
+=======
           <div>Password: {password}</div>
           <div>Account type:</div>
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
           <button onClick={handelClick}>payment</button>
         </div>
       </div>

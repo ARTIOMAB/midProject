@@ -1,14 +1,18 @@
-
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
+<<<<<<< HEAD
+/* import "./AtTasks.css"; */
+function AtTasks() {
+=======
 import "react-datepicker/dist/react-datepicker.css";
 import "./AtTasks.css";
 
 function Atasks({tasks, setTasks}) {
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
   const { loginData, setLoginData } = useContext(LoginContext);
   const { userData, setUserData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
@@ -37,6 +41,19 @@ function Atasks({tasks, setTasks}) {
   };
 
   const addTask = () => {
+<<<<<<< HEAD
+    setNewTask({
+      title: "",
+      explanation: "",
+      dueDate: new Date(),
+      startTime: new Date(),
+      finishTime: new Date(),
+      isAllDay: false,
+      duration: "",
+      notes: "",
+      priority: "",
+    });
+=======
     if (newTask.title.trim() !== "" && newTask.priority !== "") {
       // Format dates as strings in a specific format
       const formattedNewTask = {
@@ -64,6 +81,7 @@ function Atasks({tasks, setTasks}) {
         priority: "",
       });
     }
+>>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545
   };
 
   const deleteTask = (index) => {
@@ -269,7 +287,11 @@ function Atasks({tasks, setTasks}) {
                               ? "All Day"
                               : task.startTime &&
                                 task.finishTime &&
-                                `${Number(task.startTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)} - ${Number(task.finishTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)}`}
+                                `${
+                                  Number(task.startTime.slice(11, 13)) + 3
+                                }${task.finishTime.slice(13, 16)} - ${
+                                  Number(task.finishTime.slice(11, 13)) + 3
+                                }${task.finishTime.slice(13, 16)}`}
                           </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>

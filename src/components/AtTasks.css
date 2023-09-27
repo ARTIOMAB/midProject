@@ -1,21 +1,17 @@
 
-label{
-    color:#0e1a40;
-}
 #AllContainer {
     background-color: #0e1a40;
     color: #fff;
     font-family: Arial, sans-serif;
     border-radius: 10px;
   }
-  
-  /* Style the main container */
+
   #Container {
     background-color: #1a237e;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    overflow-x: auto; 
     height: 60vh;
     margin-left: 3vw;
     margin-right: 3vw;
@@ -33,7 +29,7 @@ label{
   }
   
   button:hover {
-    background-color: #304ffe; /* Darker blue on hover */
+    background-color: #304ffe; 
   }
   
   /* Style the modal */
