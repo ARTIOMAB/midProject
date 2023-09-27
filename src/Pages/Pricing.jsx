@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PricingCard from "../components/PricingCard";
 import { PricingContext } from "../Context";
 
+
 function Pricing() {
   const pricingData = useContext(PricingContext);
 

@@ -1,0 +1,77 @@
+/* PricingCard.css */
+
+/* Styles for the pricing-card */
+.pricing-card {
+    background-color: #f8f9fa; /* Background color */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px; /* Add margin for separation */
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .pricing-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Styles for the card-heading */
+  .card-heading {
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Text color */
+    font-size: 24px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  /* Styles for the card-content */
+  .card-content {
+    padding: 20px;
+  }
+  
+  /* Styles for the price */
+  .price {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Styles for the description */
+  .description {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Styles for the include */
+  .include {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  /* Styles for the includes-list */
+  .includes-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  /* Styles for the pricingCard-buy-btn */
+  .pricingCard-buy-btn {
+    width: 100%;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Text color */
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .pricingCard-buy-btn:hover {
+    background-color: #0056b3; /* Button color on hover */
+  }
+  
