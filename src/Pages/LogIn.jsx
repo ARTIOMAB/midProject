@@ -32,7 +32,7 @@ export default function LogIn() {
   };
   return (
     <div className="login-container">
-      <div id="login">
+      <div className="login-card">
         <h1>Login</h1>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -40,17 +40,21 @@ export default function LogIn() {
             placeholder="UserName"
             {...register("username", { required: true, maxLength: 20 })}
           />
-          {errors.username && <span>User Name is required</span>}
+          {errors.username && (
+            <span className="error">User Name is required</span>
+          )}
           <input
             type="password"
             placeholder="Password"
             {...register("password", { required: true, minLength: 8 })}
           />
-          {errors.password && <span>Password Is Required</span>}
+          {errors.password && (
+            <span className="error">Password Is Required</span>
+          )}
           <br />
 
           <button>
-            <input type="submit" />
+            <input type="submit" className="login-button" />
           </button>
         </form>
         <Link to={"Register"}>Not Registered Yet?</Link>

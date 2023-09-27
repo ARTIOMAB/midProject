@@ -1,0 +1,69 @@
+header{
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #F8F9FA;
+    background-color: #4482C1;
+    color: #FFFFFF;
+   
+   
+  }
+  header h1 {
+    margin-left: 20px;
+    font-size: 55px;
+  }
+  nav ul a {
+    text-decoration-line: none; 
+    color: #F8F9FA;
+  }
+  nav ul a:visited{
+  color: white;
+  
+  }
+   nav ul li{
+    list-style: none;
+    display: inline;
+    padding: 5px;
+    font-size: 1.6rem;
+    margin-left: 10px;
+  }
+  nav ul li:hover{
+  border-bottom: 1px solid white;
+  }
+  
+  header .Log-in {
+    margin-left:700px;
+  
+  }
+  
+  .btn {
+    margin-left: 20px;
+    color: whitesmoke;
+    text-decoration: none;
+    border: 2px solid whitesmoke;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+  }
+  .btn:hover {
+    color: white;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: purple;
+    z-index: -1;
+    transition: all 1s;
+  }
+  .btn:hover::before {
+    width: 160%;
+  }
+  

@@ -1,11 +1,13 @@
-
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import { LoginContext, UserContext } from "../Context";
 import DatePicker from "react-datepicker";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import StrictModeDroppable from "../components/StrictModeDroppable";
+/* import "./AtTasks.css"; */
 function AtTasks() {
+  const { loginData, setLoginData } = useContext(LoginContext);
+  const { userData, setUserData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const userIndex = userData.findIndex(
     (user) => user.username === loginData.username
@@ -32,19 +34,17 @@ function AtTasks() {
   };
 
   const addTask = () => {
-
-      setNewTask({
-        title: "",
-        explanation: "",
-        dueDate: new Date(),
-        startTime: new Date(),
-        finishTime: new Date(),
-        isAllDay: false,
-        duration: "",
-        notes: "",
-        priority: "",
-      });
-    }
+    setNewTask({
+      title: "",
+      explanation: "",
+      dueDate: new Date(),
+      startTime: new Date(),
+      finishTime: new Date(),
+      isAllDay: false,
+      duration: "",
+      notes: "",
+      priority: "",
+    });
   };
 
   const deleteTask = (index) => {
@@ -225,7 +225,11 @@ function AtTasks() {
                               ? "All Day"
                               : task.startTime &&
                                 task.finishTime &&
-                                `${Number(task.startTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)} - ${Number(task.finishTime.slice(11, 13))+3}${task.finishTime.slice(13, 16)}`}
+                                `${
+                                  Number(task.startTime.slice(11, 13)) + 3
+                                }${task.finishTime.slice(13, 16)} - ${
+                                  Number(task.finishTime.slice(11, 13)) + 3
+                                }${task.finishTime.slice(13, 16)}`}
                           </td>
                           <td>{task.notes}</td>
                           <td>{task.priority}</td>

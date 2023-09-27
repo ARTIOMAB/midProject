@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { LoginContext } from "../Context";
+import { LoginContext } from "../../Context";
+import "./NavBar.css";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -39,7 +40,11 @@ function NavBar() {
         </ul>
       </nav>
       {isLoggedIn ? (
-        <button onClick={handleLogout} className="Log-in btn">
+        <button
+          onClick={handleLogout}
+          className="Log-out btn"
+          style={{ marginLeft: "400px" }}
+        >
           Log-Out
         </button>
       ) : (

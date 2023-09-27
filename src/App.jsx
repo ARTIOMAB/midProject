@@ -1,7 +1,7 @@
 import "./App.css";
 import { PricingProvider, UserContext, LoginContext } from "./Context";
-import HomePage from "./Pages/HomePage";
-import NavBar from "./components/NavBar";
+import HomePage from "./Pages/HomePage/HomePage";
+import NavBar from "./components/NavBar/NavBar";
 import Contact from "./Pages/Contact";
 import Pricing from "./Pages/Pricing";
 import Register from "./Pages/Register";
@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [loginData, setLoginData] = useState(
-    JSON.parse(localStorage.getItem("logins")) || {}
+    JSON.parse(localStorage.getItem("login")) || {}
   );
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("users")) || []

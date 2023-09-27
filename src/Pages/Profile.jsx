@@ -29,7 +29,7 @@ function Profile() {
           <div>userName: {username}</div>
           <div>Email: {email}</div>
           <div>Credit Card number: {lastCreditCardNumber}</div>
-          <div>Account type:</div>
+
           <button onClick={handelClick}>payment</button>
         </div>
       </div>
