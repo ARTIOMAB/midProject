@@ -18,7 +18,7 @@ function App() {
     JSON.parse(localStorage.getItem("logins")) || {}
   );
   const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("users")) || {}
+    JSON.parse(localStorage.getItem("users")) || []
   );
 
   useEffect(() => {

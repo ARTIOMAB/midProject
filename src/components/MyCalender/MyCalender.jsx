@@ -11,7 +11,6 @@ const MyCalendar = () => {
   const { loginData } = useContext(LoginContext);
 
   const events = (loginData.tasks || []).map((task, index) => {
-    // Check if task.dueDate, task.startTime, and task.finishTime are in the correct format.
     const startDate = moment(
       task.dueDate + " " + task.startTime,
       "YYYY-MM-DD HH:mm"
@@ -24,8 +23,8 @@ const MyCalendar = () => {
     return {
       id: index,
       title: task.title,
-      start: startDate.toDate(), // Convert to JavaScript Date object.
-      end: endDate.toDate(), // Convert to JavaScript Date object.
+      start: startDate.toDate(),
+      end: endDate.toDate(),
     };
   });
 

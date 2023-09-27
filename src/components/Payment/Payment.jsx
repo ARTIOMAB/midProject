@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../Context";
+import { LoginContext, UserContext } from "../../Context";
 import "./payment.css";
 
 function Payment() {
   const navigate = useNavigate();
-  const { userData, setUserData } = useContext(UserContext);
+  const { loginData, setLoginData } = useContext(LoginContext);
+  const { setUserData } = useContext(UserContext);
 
   const {
     register,
@@ -41,12 +42,13 @@ function Payment() {
       expiryDate: data.expiryDate,
     };
 
-    const updatedUserData = {
-      ...userData,
-      payment: [...userData.payment, payment],
+    const updatedLoginData = {
+      ...loginData,
+      payment: [...loginData.payment, payment],
     };
 
-    setUserData(updatedUserData);
+    setLoginData(updatedLoginData);
+    setUserData(updatedLoginData);
 
     navigate("/");
   };
