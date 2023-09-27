@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-<<<<<<< HEAD:src/components/NavBar/NavBar.jsx
 import { LoginContext } from "../../Context";
 import "./NavBar.css";
-=======
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545:src/components/NavBar.jsx
 
 function NavBar() {
   const navigate = useNavigate();
+  const { loginData, setLoginData } = useContext(LoginContext);
 
   const handleLoginNavigate = () => {
     navigate("/login");
@@ -17,6 +15,16 @@ function NavBar() {
     navigate("/profile");
   };
 
+  const handleWorkZoneNavigate = () => {
+    navigate("/workzone");
+  };
+
+  const handleLogout = () => {
+    setLoginData({});
+    navigate("/");
+  };
+
+  const isLoggedIn = !!loginData.username;
   return (
     <header>
       <h1>ScheduPro</h1>
@@ -33,39 +41,27 @@ function NavBar() {
           </NavLink>
         </ul>
       </nav>
-<<<<<<< HEAD:src/components/NavBar/NavBar.jsx
       {isLoggedIn ? (
-        <button
-          onClick={handleLogout}
-          className="Log-out btn"
-          style={{ marginLeft: "400px" }}
-        >
-          Log-Out
+        <button onClick={handleLogout} className="Log-in btn">
+          Log out
         </button>
       ) : (
         <button onClick={handleLoginNavigate} className="Log-in btn">
-          Log-In
+          Log-in
         </button>
       )}
-      {isLoggedIn && (
+
+      {isLoggedIn && ( // Only render "Profile" when logged in
         <button onClick={handleProfileNavigate} className="profile btn">
           Profile
         </button>
       )}
-      {isLoggedIn && (
-        <button onClick={handleWorkZoneNavigate} className="profile btn">
+
+      {isLoggedIn && ( // Only render "WorkZone" when logged in
+        <button onClick={handleWorkZoneNavigate} className="workzone btn">
           WorkZone
         </button>
       )}
-=======
-      <button onClick={handleLoginNavigate} className="Log-in btn">
-        Log-in
-      </button>
-
-      <button onClick={handleProfileNavigate} className="profile btn">
-        Profile
-      </button>
->>>>>>> 28814a5eef9ef16f1793540046514f1f60cde545:src/components/NavBar.jsx
     </header>
   );
 }

@@ -1,0 +1,15 @@
+div{
+   
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+  
+}
+.task-button {
+    color: #4482C1;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
