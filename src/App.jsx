@@ -1,5 +1,4 @@
 import "./App.css";
-
 import { PricingProvider, UserContext, LoginContext } from "./Context";
 import HomePage from "./Pages/HomePage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,7 +11,7 @@ import Payment from "./components/Payment/Payment";
 import WorkZone from "./Pages/WorkZone/WorkZone";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Pages/Login/login.css";
+/* import "./Pages/Login/login.css"; */
 function App() {
   const [loginData, setLoginData] = useState(
     JSON.parse(localStorage.getItem("logins")) || {}
