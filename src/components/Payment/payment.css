@@ -1,36 +1,37 @@
-#payment-card {
-    background-color: #fff;
-    width: 60%;
-    max-width: 400px;
+.payment-container{
+  background-color: rgba(81, 116, 151, 0.4);
+    width:50vw;
+    height: 80vh;
+    
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
     margin: 0 auto; 
     margin-top: 20px;
+    
   }
   
-  #payment-card h2 {
-    margin-bottom: 20px;
+ .payment-container h2 {
+   font-size:4rem ;
+   font-weight: 800;
   }
-  
-  #payment-card label {
+  form label {
     display: block;
     text-align: left; 
     margin-top: 10px;
     font-weight: bold;
   }
-  
-  #payment-card input {
+form input {
     width: 80%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
-  }
-  
-  input.pay-button {
-    width: 99%;
+opacity: 0.9;  }
+ 
+ .pay-button {
+    width: 50%;
     height: 40px;
     background-color: #04D4F0;
     color: #fff;
@@ -47,10 +48,25 @@
     background-color: #0056b3;
   }
   
-  #payment-card span.error {
+ form span.error {
     display: block;
     text-align: left;
     color: red;
     margin-top: 5px;
+  }
+  @media (max-width: 768px) {
+    .payment-container{
+       width: 70%;
+    margin-top: 10vh; 
+    }
+    .payment-container h2 {
+      font-size:4rem ;
+      font-weight: 800;
+     }
+    .contact-card input,
+  .contact-card textarea {
+    width: 100%;
+    margin-left: 0;
+  }
   }
   

@@ -54,8 +54,8 @@ function Payment() {
   };
 
   return (
-    <div id="payment-card">
-      <h2>Payment</h2>
+    <div className="payment-container">
+      <h2 className="payment-heading">Payment</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Credit Card Number</label>
         <input
@@ -83,7 +83,9 @@ function Payment() {
         />
         {errors.cvv && <span>CVV is required</span>}
 
-        <button type="submit">Pay Now</button>
+        <button className="pay-button" type="submit">
+          Pay Now
+        </button>
       </form>
     </div>
   );

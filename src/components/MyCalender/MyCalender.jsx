@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
@@ -9,6 +9,10 @@ const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
   const { loginData } = useContext(LoginContext);
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
   const events = (loginData.tasks || []).map((task, index) => {
     const startDate = moment(
