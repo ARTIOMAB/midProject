@@ -1,10 +1,8 @@
-header{
+/* header{
     display: flex;
     align-items: center;
     background-color:rgba(68, 130, 193, 0.2);
     color: #FFFFFF;
-   /*  #4482C1 */
-   /*  #04D4F0*/
    
    
   }
@@ -75,4 +73,105 @@ header{
   .btn:hover::before {
     width: 160%;
   }
-  
+   */
+header {
+  display: flex;
+  align-items: center;
+  background-color: rgba(68, 130, 193, 0.2);
+  color: #ffffff;
+}
+
+header h1 {
+  margin-left: 20px;
+  font-size: 6rem;
+  font-family: 'Young Serif', serif;
+  color: whitesmoke;
+  -webkit-text-stroke: 0.1px black;
+}
+
+nav ul a {
+  text-decoration-line: none;
+  color: whitesmoke;
+}
+
+nav ul a:visited {
+  color: black;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline;
+  padding: 5px;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+nav ul li:hover {
+  border-bottom: 3px solid black;
+}
+
+.Log-in {
+  margin-left: 22vw;
+}
+
+.btn {
+  margin-left: 20px;
+  color: black;
+  text-decoration: none;
+  border: 2px solid whitesmoke;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+}
+
+.btn:hover {
+  color: black;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: all 1s;
+}
+
+.btn:hover::before {
+  width: 160%;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 4rem;
+    margin-left: 0;
+  }
+
+  nav ul {
+    margin-top: 20px;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+
+  .Log-in {
+    margin-left: 0;
+  }
+}
+

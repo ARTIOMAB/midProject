@@ -1,4 +1,4 @@
-
+/* 
 
 .deals-heading{
   font-family: 'Young Serif', serif;
@@ -16,4 +16,43 @@
     margin-top: 50px;
     color: whitesmoke;
   }
-  
+   */
+
+.deals-heading {
+  font-family: 'Young Serif', serif;
+  max-width: 100vw;
+  color: black;
+  font-size: 3rem;
+  margin-left: 30vw;
+}
+
+.pricing-box {
+  display: flex;
+  justify-content: space-around;
+  height: 90vh;
+  margin-top: 50px;
+  color: whitesmoke;
+}
+
+
+@media (max-width: 768px) {
+  .deals-heading {
+    font-size: 2rem;
+    text-align: center; 
+    margin-left: 0; 
+  }
+
+  .pricing-box {
+    flex-direction: column; 
+    align-items: center; 
+    height: auto;
+  }
+
+
+  .pricing-box .pricing-card {
+    margin: 20px;
+    padding: 20px;
+    max-width: 80%;
+    text-align: center;
+  }
+}
