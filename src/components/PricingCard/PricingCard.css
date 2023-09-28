@@ -1,4 +1,4 @@
-
+/* 
 .pricing-card{
   max-width: 25vw;
   height:80vh;
@@ -58,8 +58,72 @@ margin-top: 70vh;
 }
 
 
+ */
+
+ .pricing-card {
+  max-width: 25vw;
+  min-width: 250px; 
+  height: auto; 
+  background-color: #2e525299;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  gap: 10px;
+  position: relative; 
+}
+
+.card-heading {
+  font-size: 3rem;
+}
+
+.card-content {
+  width: 90%;
+  margin: 10px;
+  font-size: 1.6rem;
+}
+
+.price {
+  margin-top: 20px;
+  font-size: 40px;
+}
+
+.description {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.include {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.includes-list {
+  list-style: outside;
+}
+
+.pricingCard-buy-btn {
+  width: 100%; 
+  background-color: #059dc0;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px; 
+  position: relative; 
+}
 
 
+.pricingCard-buy-btn:hover {
+  background-color: #0056b3;
+}
 
 
 

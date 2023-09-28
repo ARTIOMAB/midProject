@@ -1,4 +1,4 @@
-
+/* 
 .contact-container {
   width: 100%;
   display: flex;
@@ -76,4 +76,103 @@ input.contact-btn{
 
 .contact-card a:hover {
   color: hwb(212 77% 7%);
+} */
+
+.contact-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 15vh); 
 }
+
+.contact-card {
+  background-color: rgba(81, 116, 151, 0.4);
+  width: 80%;
+  max-width: 600px; 
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 5vh; 
+  padding: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .contact-card {
+    width: 90%;
+    margin-top: 10vh; 
+  }
+
+  .contact-card input,
+  .contact-card textarea {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.contact-heading {
+  font-size: 4rem;
+}
+
+.error {
+  display: block;
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 60%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 1vw;
+}
+
+.inner-contact-heading {
+  font-size: 2.2rem;
+}
+
+input.contact-btn {
+  width: 100%; 
+  margin-top: 10px;
+}
+
+.contact-card-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-card-input label {
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.contact-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.contact-btn:hover {
+  background-color: #0056b3;
+}
+
+.contact-card a {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.contact-card a:hover {
+  color: hwb(212 77% 7%);
+}
+

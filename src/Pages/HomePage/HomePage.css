@@ -1,4 +1,4 @@
- main {
+ /* main {
   height: 100vh;
   width: 95vw;
   margin: auto;
@@ -33,4 +33,66 @@
   }
  label{
   font-size: 1.4rem;
- }
+ } */
+ 
+
+.home-page{
+  display: flex;
+}
+
+
+.main-heading {
+  font-weight: 400;
+  font-size: 6rem;
+  width: 40vw;
+  margin-bottom: 5vh;
+  margin-left: 5vw;
+}
+
+
+.content-card {
+  height: auto;
+  width: 70vw;
+  background-color: #5c707099;
+  color: whitesmoke;
+  margin: 5vh auto;
+  border-radius: 10px;
+  margin-left: 8vw;
+}
+
+
+.content {
+  font-weight: 500;
+  font-size: 2rem;
+  width: 45vw;
+  margin: auto;
+}
+
+
+label {
+  font-size: 1.4rem;
+}
+
+
+@media screen and (max-width: 768px) {
+  .home-page{
+    flex-direction: column;
+  }
+  .main-heading {
+    font-size: 4rem;
+    width: 80vw;
+    margin-bottom: 3vh;
+    margin-left: 0;
+  }
+
+  .content-card {
+    height: auto;
+    width: 90vw;
+    margin: 5vh auto;
+  }
+  .content {
+    font-size: 1.8rem;
+    width: 80vw;
+    text-align: center;
+  }
+}
