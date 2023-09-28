@@ -25,7 +25,7 @@
   border-radius: 5px;
 }
 .register-button-box{
-  background-color: #007bff;
+  background-color: #04D4F0;
 border: none;
 border-radius: 5px;
 }
@@ -35,8 +35,7 @@ input.register-button {
   width: 99%;
   height: 40px;
   
-  background-color: #007bff;
-  color: #fff;
+  background-color: #04D4F0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -52,7 +51,7 @@ input.register-button {
 }
 
 .register-form button {
-  background-color: #007bff;
+  background-color: #04D4F0;
   color: #fff;
   border: none;
   border-radius: 5px;
