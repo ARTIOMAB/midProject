@@ -9,7 +9,7 @@ function PricingCard(props) {
   return (
     <div className="pricing-card">
       <h2 className="card-heading">{props.heading}</h2>
-      <div className="card-contant">{props.content}</div>
+      <div className="card-content">{props.content}</div>
       <div className="price">{props.price}</div>
       <div className="description">{props.description}</div>
       <div className="include">Include:</div>

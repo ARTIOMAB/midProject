@@ -36,9 +36,9 @@ export default function Register() {
   };
 
   return (
-    <main id="register">
-      <h2 className="register-heading">Register</h2>
+    <main className="register-container">
       <div className="register-card">
+        <h2 className="register-heading">Register</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             placeholder="UserName"

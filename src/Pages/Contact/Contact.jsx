@@ -1,34 +1,69 @@
 import React from "react";
+import "./contact.css";
 
 function Contact() {
   return (
     <div className="contact-container">
-      <h2>Personal Information</h2>
-      <label htmlFor="first_name">First Name:</label>
-      <input type="text" id="first_name" name="first_name" />
-      <br />
-      <br />
-      <label htmlFor="last_name">Last Name:</label>
-      <input type="text" id="last_name" name="last_name" />
-      <br />
-      <br />
+      <div className="contact-card">
+        <h2 className="contact-heading">Contact With Us!</h2>
+        <div className="contact-card-input">
+          <label htmlFor="first_name">First Name:</label>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="Enter your first name"
+          />
+        </div>
+        <br />
+        <br />
+        <div className="contact-card-input">
+          <label htmlFor="last_name">Last Name:</label>
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Enter your last name"
+          />
+        </div>
+        <br />
+        <br />
 
-      <h2>Contact Information</h2>
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" name="email" />
-      <br />
-      <br />
-      <label htmlFor="phone">Phone:</label>
-      <input type="tel" id="phone" name="phone" />
-      <br />
-      <br />
+        <h2 className="inner-contact-heading">Contact Information</h2>
+        <div className="contact-card-input">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+          />
+        </div>
+        <br />
+        <br />
+        <div className="contact-card-input">
+          <label htmlFor="phone">Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter your phone number"
+          />
+        </div>
+        <br />
+        <br />
 
-      <h2>Additional Comments</h2>
-      <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
-      <br />
-      <br />
+        <h2 className="inner-contact-heading">Additional Comments</h2>
+        <div className="contact-card-input">
+          <label htmlFor="comments">Comments:</label>
+          <textarea
+            name="comments"
+            rows="4"
+            cols="50"
+            placeholder="Enter your comments"
+          ></textarea>
+        </div>
+        <br />
+        <br />
 
-      <input type="submit" value="Submit" />
+        <input className="contact-btn" type="submit" value="Submit" />
+      </div>
     </div>
   );
 }

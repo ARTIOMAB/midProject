@@ -42,7 +42,7 @@ function NavBar() {
         </ul>
       </nav>
       {isLoggedIn ? (
-        <button onClick={handleLogout} className="Log-in btn">
+        <button onClick={handleLogout} className="Log-out btn">
           Log out
         </button>
       ) : (
@@ -51,13 +51,13 @@ function NavBar() {
         </button>
       )}
 
-      {isLoggedIn && ( // Only render "Profile" when logged in
+      {isLoggedIn && (
         <button onClick={handleProfileNavigate} className="profile btn">
           Profile
         </button>
       )}
 
-      {isLoggedIn && ( // Only render "WorkZone" when logged in
+      {isLoggedIn && (
         <button onClick={handleWorkZoneNavigate} className="workzone btn">
           WorkZone
         </button>

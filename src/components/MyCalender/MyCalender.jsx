@@ -29,7 +29,7 @@ const MyCalendar = () => {
   });
 
   return (
-    <div>
+    <div className="big-calender">
       <Calendar
         localizer={localizer}
         events={events}
