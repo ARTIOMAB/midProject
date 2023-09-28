@@ -1,43 +1,52 @@
 header{
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #F8F9FA;
-    background-color: #4482C1;
+    background-color:rgba(68, 130, 193, 0.2);
     color: #FFFFFF;
+   /*  #4482C1 */
+   /*  #04D4F0*/
    
    
   }
   header h1 {
     margin-left: 20px;
-    font-size: 55px;
+    font-size:6rem;
+    font-family: 'Young Serif', serif;
+    color: whitesmoke;
+    -webkit-text-stroke: 0.1px black ; 
+    
   }
+
+
   nav ul a {
     text-decoration-line: none; 
-    color: #F8F9FA;
+    color: whitesmoke;
+    
   }
   nav ul a:visited{
-  color: white;
+    color: black;
+    
   
   }
    nav ul li{
     list-style: none;
     display: inline;
     padding: 5px;
-    font-size: 1.6rem;
+    font-size: 2rem;
     margin-left: 10px;
   }
   nav ul li:hover{
-  border-bottom: 1px solid white;
+  border-bottom: 3px solid black ;
   }
   
   header .Log-in {
-    margin-left:13vw;
+    margin-left:22vw;
   
   }
   
   .btn {
     margin-left: 20px;
-    color: whitesmoke;
+    color:black;
     text-decoration: none;
     border: 2px solid whitesmoke;
     padding: 10px 20px;
@@ -49,7 +58,7 @@ header{
     overflow: hidden;
   }
   .btn:hover {
-    color: white;
+    color:black;
   }
   .btn::before {
     content: '';
@@ -59,7 +68,7 @@ header{
     top: 0;
     left: -40px;
     transform: skewX(45deg);
-    background-color: purple;
+  
     z-index: -1;
     transition: all 1s;
   }

@@ -33,7 +33,7 @@ export default function LogIn() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1>Login</h1>
+        <h2 className="login-heading">Login</h2>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"

@@ -3,4 +3,14 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-image: url(https://cdn.papershift.com/20220523200629/employee-time-tracking-the-way-you-want-it-to-work-by-Papershift-min-scaled.jpeg);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+ /*  background-attachment: fixed;  */
+ 
+}
+.container{
+ 
+  height: 100%;
+
 }
