@@ -1,4 +1,54 @@
-import React, { useContext, useState } from "react";
+
+// import React, { useContext } from "react";
+// import { Calendar, momentLocalizer } from "react-big-calendar";
+// import "react-big-calendar/lib/css/react-big-calendar.css";
+// import moment from "moment";
+// import "./MyCalendar.css";
+// import { LoginContext } from "../../Context";
+
+// const localizer = momentLocalizer(moment);
+
+// const MyCalendar = () => {
+//   const { loginData } = useContext(LoginContext);
+
+//   const events = (loginData.tasks || []).map((task, index) => {
+//     const startDate = moment(
+//       task.dueDate + " " + task.startTime,
+//       "YYYY-MM-DD HH:mm"
+//     );
+//     const endDate = moment(
+//       task.dueDate + " " + task.finishTime,
+//       "YYYY-MM-DD HH:mm"
+//     );
+
+//     return {
+//       id: index,
+//       title: task.title,
+//       start: startDate.toDate(),
+//       end: endDate.toDate(),
+//     };
+//   });
+
+//   return (
+//     <div className="big-calender">
+//       <Calendar
+//         localizer={localizer}
+//         events={events}
+//         startAccessor="start"
+//         endAccessor="end"
+//         style={{ height: 500, color: "white" }}
+//         views={["month", "week", "day", "agenda"]}
+//         popup
+//         selectable
+//         onSelectEvent={(event) => console.log(event)}
+//       />
+//     </div>
+//   );
+// };
+
+// export default MyCalendar;
+// MyCalendar.js
+import React, { useContext, useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
@@ -9,12 +59,8 @@ const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
   const { loginData } = useContext(LoginContext);
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
-
-  const events = (loginData.tasks || []).map((task, index) => {
+  const [events, setEvents] = useState([]);
+  const newEvents = (loginData.tasks || []).map((task, index) => {
     const startDate = moment(
       task.dueDate + " " + task.startTime,
       "YYYY-MM-DD HH:mm"
@@ -31,9 +77,13 @@ const MyCalendar = () => {
       end: endDate.toDate(),
     };
   });
+  useEffect(() => {
+
+    setEvents(newEvents);
+  }, [loginData.tasks]);
 
   return (
-    <div className="big-calender">
+    <div className="big-calendar">
       <Calendar
         localizer={localizer}
         events={events}
