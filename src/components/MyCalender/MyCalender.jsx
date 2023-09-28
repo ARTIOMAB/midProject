@@ -1,3 +1,4 @@
+
 // import React, { useContext } from "react";
 // import { Calendar, momentLocalizer } from "react-big-calendar";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -59,7 +60,6 @@ const localizer = momentLocalizer(moment);
 const MyCalendar = () => {
   const { loginData } = useContext(LoginContext);
   const [events, setEvents] = useState([]);
-
   const newEvents = (loginData.tasks || []).map((task, index) => {
     const startDate = moment(
       task.dueDate + " " + task.startTime,
